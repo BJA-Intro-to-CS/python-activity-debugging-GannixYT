@@ -17,10 +17,11 @@ def apply_discount(price, discount):
 
 
 def update_stock(products, product_name, amount):
-    for product in products:
-        if product["name"] == product_name:
-            product["stock"] = product["stock"] - int(amount)
-    return product
+    if int(amount) < int(products[0]["stock"]):
+        for product in products:
+            if product["name"] == product_name:
+                product["stock"] = product["stock"] - int(amount)
+        return product
 
 
 def get_average_price(products):
@@ -53,6 +54,12 @@ print("Discounted price:", discounted)
 print("Updating stock...")
 update_stock(products, "Notebook", "5")
 print(products)
+
+products = [
+    {"name": "Book", "price": 5, "stock": 3}
+]
+update_stock(products, "Book", 10)
+print(products[0]["stock"])
 
 
 average = get_average_price(products)
