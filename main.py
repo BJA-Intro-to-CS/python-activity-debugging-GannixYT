@@ -11,9 +11,11 @@ def calculate_total_price(products):
 
 
 def apply_discount(price, discount):
+    discount = int(discount)
     if discount > 1:
-        discount = float(discount) / 100
-    price = price
+        discount = discount / 100
+    if isinstance(price, str):
+        price = int(price)
     return price - (price * discount)
 
 
