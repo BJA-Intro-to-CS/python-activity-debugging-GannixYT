@@ -15,7 +15,10 @@ def apply_discount(price, discount):
     if discount > 1:
         discount = discount / 100
     if isinstance(price, str):
-        price = float(price)
+        if isinstance(price, float):
+            price = price
+        else:
+            price = int(price)
     return price - (price * discount)
 
 
