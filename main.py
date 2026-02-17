@@ -12,8 +12,8 @@ def calculate_total_price(products):
 
 def apply_discount(price, discount):
     if discount > 1:
-        discount = discount / 100
-    price = int(price)
+        discount = float(discount) / 100
+    price = price
     return price - (price * discount)
 
 
@@ -60,8 +60,8 @@ print(products)
 average = get_average_price(products)
 print("Average price:", average)
 
-choice = input("Enter product name to buy: ")
-quantity = input("Enter quantity: ")
+# choice = input("Enter product name to buy: ")
+# quantity = input("Enter quantity: ")
 
 for product in products:
     if product["name"] == choice:
