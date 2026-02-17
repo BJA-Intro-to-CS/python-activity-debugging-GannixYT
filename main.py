@@ -13,10 +13,12 @@ def calculate_total_price(products):
 def apply_discount(price, discount):
     if discount > 1:
         discount = discount / 100
-    return price - price * discount
+    price = int(price)
+    return price - (price * discount)
 
 
 def update_stock(products, product_name, amount):
+    amount = int(amount)
     for product in products:
         if product["name"] == product_name:
             product["stock"] = product["stock"] - amount
@@ -25,19 +27,19 @@ def update_stock(products, product_name, amount):
 
 def get_average_price(products):
     total = calculate_total_price(products)
-    return total / products
+    return total / len(products)
 
 
 def print_products(products):
     for i in range(len(products)):
-        print(products["name"], "-", products[i]["price"], "-", products[i]["stock"])
+        print(f"{products[i]["name"]} - {products[i]["price"]} - {products[i]["stock"]}")
 
 
 products = [
     {"name": "Pencil", "price": 0.99, "stock": 100},
-    {"name": "Notebook", "price": "2.50", "stock": 50},
-    {"name": "Backpack", "price": 25, "stock": "20"},
-    {"name": "Marker", "price": 1.5}
+    {"name": "Notebook", "price": 2.50, "stock": 50},
+    {"name": "Backpack", "price": 25, "stock": 20},
+    {"name": "Marker", "price": 1.5, "stock": 70}
 ]
 
 
@@ -58,23 +60,23 @@ print(products)
 average = get_average_price(products)
 print("Average price:", average)
 
-
 choice = input("Enter product name to buy: ")
 quantity = input("Enter quantity: ")
 
 for product in products:
     if product["name"] == choice:
+        quantity = int(quantity)
         if quantity <= product["stock"]:
             product["stock"] = product["stock"] - quantity
             print("Purchase successful")
-        else
+        else:
             print("Not enough stock")
 
 
 count = 0
 while count < len(products):
     print(products[count]["name"])
-    count = count - 1
+    count  += 1
 
 
 print("Done")
